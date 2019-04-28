@@ -4,6 +4,8 @@ Ruby version - 2.3
 
 Rails - 5.2
 
+Database - MySql
+
 1 Clone or checkout repository in rails environment.
 
 2 Set up database and run rake db:migrate.

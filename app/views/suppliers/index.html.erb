@@ -1,0 +1,58 @@
+
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<h2>  
+  <%if current_user.admin? %>
+      <%= form_tag({:action => :import_new_data}, id: "import", multipart: true) do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag( "Import" ) %>
+      <% end %>
+     <%#= link_to('IMPORT', import_new_data_path) %>
+  <%end %>
+</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Suppliers</th>
+    <th>Active/Total</th>
+  </tr>
+<% @supplier.each do |supplier| %>
+  <tr>
+    <td><%= link_to('show', supplier_path(supplier.id, inactive: false)) %></td>
+    <td><%= supplier.name %></td>
+    <td><%= supplier.supplier_active_products %>/<%= supplier.products_count %></td>
+  </tr>
+<% end %>
+</table>
+
+<script type="text/javascript">
+  
+  $('#import').submit(function () {
+
+    var file = $("#file").val()
+  
+    if(file === ''){
+      alert("please select the file.")
+      return false;
+    }
+    
+});
+</script>>
